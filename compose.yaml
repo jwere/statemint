@@ -1,0 +1,19 @@
+# Local development database. Production setup is described in docs/ARCHITECTURE.md.
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: statemint
+      POSTGRES_USER: statemint
+      POSTGRES_PASSWORD: ${STATEMINT_DB_PASSWORD:?Set STATEMINT_DB_PASSWORD before starting}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - statemint-db:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U statemint -d statemint"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  statemint-db:

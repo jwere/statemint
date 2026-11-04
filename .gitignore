@@ -1,0 +1,20 @@
+# Build output
+target/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Local data and secrets: never commit client data or credentials
+data/
+*.env
+.env
+secrets/

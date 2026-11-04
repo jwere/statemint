@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: statemint
+  datasource:
+    url: ${STATEMINT_DB_URL:jdbc:postgresql://localhost:5432/statemint}
+    username: ${STATEMINT_DB_USER:statemint}
+    password: ${STATEMINT_DB_PASSWORD:}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jackson:
+    time-zone: UTC
+
+server:
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+# StateMint settings. Paths use forward slashes on every platform.
+statemint:
+  storage:
+    raw-files: ${STATEMINT_RAW_FILES:./data/raw}
+    statements: ${STATEMINT_STATEMENTS:./data/statements}
+  intake:
+    stable-seconds: 60

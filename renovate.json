@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "Africa/Johannesburg",
+  "schedule": ["before 6am on monday"],
+  "vulnerabilityAlerts": { "enabled": true, "schedule": ["at any time"] },
+  "packageRules": [
+    {
+      "description": "Group Spring Boot and the libraries it manages",
+      "matchPackageNames": ["org.springframework.boot:**"],
+      "groupName": "Spring Boot"
+    },
+    {
+      "description": "Java and PostgreSQL major versions are planned upgrades, not automatic ones",
+      "matchDepNames": ["java", "postgres"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
